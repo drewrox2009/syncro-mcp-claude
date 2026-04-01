@@ -6,7 +6,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { getCredentials, getClient, clearClient } from "../../src/utils/client.js";
 
 // Mock the Syncro client module
-vi.mock("@wyre-technology/node-syncro", () => ({
+vi.mock("../../src/vendor/node-syncro/index.js", () => ({
   SyncroClient: vi.fn().mockImplementation((config) => ({
     config,
     customers: { list: vi.fn(), get: vi.fn(), create: vi.fn() },
@@ -96,7 +96,7 @@ describe("client.ts", () => {
     });
 
     it("should create new client when credentials change", async () => {
-      const { SyncroClient } = await import("@wyre-technology/node-syncro");
+      const { SyncroClient } = await import("../../src/vendor/node-syncro/index.js");
       const mockSyncroClient = vi.mocked(SyncroClient);
 
       process.env.SYNCRO_API_KEY = "first-api-key";
@@ -123,7 +123,7 @@ describe("client.ts", () => {
     });
 
     it("should create new client when subdomain changes", async () => {
-      const { SyncroClient } = await import("@wyre-technology/node-syncro");
+      const { SyncroClient } = await import("../../src/vendor/node-syncro/index.js");
       const mockSyncroClient = vi.mocked(SyncroClient);
 
       process.env.SYNCRO_API_KEY = "test-api-key";

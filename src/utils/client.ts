@@ -5,7 +5,7 @@
  * to avoid loading the entire library upfront.
  */
 
-import type { SyncroClient } from "@wyre-technology/node-syncro";
+import type { SyncroClient } from "../vendor/node-syncro/index.js";
 
 export interface SyncroCredentials {
   apiKey: string;
@@ -53,7 +53,7 @@ export async function getClient(): Promise<SyncroClient> {
 
   if (!_client) {
     // Lazy import the library
-    const { SyncroClient } = await import("@wyre-technology/node-syncro");
+    const { SyncroClient } = await import("../vendor/node-syncro/index.js");
     _client = new SyncroClient({
       apiKey: creds.apiKey,
       subdomain: creds.subdomain,

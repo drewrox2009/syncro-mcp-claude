@@ -19,7 +19,10 @@ A Model Context Protocol (MCP) server for Syncro MSP, implementing a decision tr
 ## Installation
 
 ```bash
-npm install @wyre-technology/syncro-mcp
+git clone https://github.com/drewrox2009/syncro-mcp.git
+cd syncro-mcp
+npm install
+npm run build
 ```
 
 ## Configuration
@@ -47,8 +50,8 @@ Add to your `claude_desktop_config.json`:
 {
   "mcpServers": {
     "syncro": {
-      "command": "npx",
-      "args": ["@wyre-technology/syncro-mcp"],
+      "command": "node",
+      "args": ["/path/to/syncro-mcp/dist/index.js"],
       "env": {
         "SYNCRO_API_KEY": "your-api-key"
       }
@@ -60,7 +63,7 @@ Add to your `claude_desktop_config.json`:
 ### With Docker
 
 ```bash
-docker build --secret id=npmrc,src=$HOME/.npmrc -t syncro-mcp .
+docker build -t syncro-mcp .
 
 docker run -e SYNCRO_API_KEY=your-api-key syncro-mcp
 ```
